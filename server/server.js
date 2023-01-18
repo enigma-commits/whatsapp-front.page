@@ -6,13 +6,14 @@ io.on('connection', socket => {
   users[id] = id;
 
   const userList=Object.keys(users);
-  console.log(userList)
-  userList.forEach(user => {
-    socket.broadcast.to(user).emit('update-list', {
-      userList
-    })
+  // userList.forEach(user => {
+  //   console.log(user);
+  //   socket.broadcast.to(user).emit('update-list', {
+  //     userList
+  //   })
   
-})
+// })
+  io.sockets.emit('broadcast', {userList})
 
   socket.on('send-message', ({ recipients, text }) => {
     recipients.forEach(recipient => {

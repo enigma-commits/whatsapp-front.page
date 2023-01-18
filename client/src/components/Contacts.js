@@ -4,23 +4,20 @@ import { useContacts } from '../contexts/ContactsProvider';
 
 export default function Contacts() {
   const { contacts,list } = useContacts()
-  const [status, setStatus] = useState({});
+  const [status, setStatus] = useState([]);
   useEffect(()=>{
     const newStatus = {}
     list.forEach((id)=>{
       newStatus[id]=true;
     })
-    setStatus(newStatus)
-    console.log(list);
-    console.log(status);
-
-  },[list]);
+    setStatus(list)
+  },[list,setStatus]);
   return (
     <ListGroup variant="flush">
       {contacts.map(contact => (
         <ListGroup.Item key={contact.id}>
           {contact.name}
-          {status[contact.id]===undefined?"    Offline":"      Online"}
+          {contact.id in status?"    Offline":"      Online"}
         </ListGroup.Item>
       ))}
     </ListGroup>

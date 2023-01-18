@@ -21,10 +21,9 @@ export function ContactsProvider({ children }) {
 
     useEffect(() => {
       if (socket == null) return
+      socket.on('broadcast', addList)
 
-      socket.on('update-list', addList)
-
-      return () => socket.off('update-list')
+      return () => socket.off('broadcast')
     }, [socket, addList])
 
     function createContact(id, name) {
