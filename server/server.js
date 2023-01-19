@@ -6,13 +6,6 @@ io.on('connection', socket => {
   users[id] = id;
 
   const userList=Object.keys(users);
-  // userList.forEach(user => {
-  //   console.log(user);
-  //   socket.broadcast.to(user).emit('update-list', {
-  //     userList
-  //   })
-  
-// })
   io.sockets.emit('broadcast', {userList})
 
   socket.on('send-message', ({ recipients, text }) => {
@@ -31,11 +24,7 @@ io.on('connection', socket => {
     // remove saved socket from users object
     delete users[id];
     const userList=Object.keys(users);
-    userList.forEach(user => {
-      socket.broadcast.to(user).emit('update-list', {
-        userList
-      })
-    })
+    io.sockets.emit('broadcast', {userList})
 
   });
 })
