@@ -17,7 +17,7 @@ export default function Contacts() {
       {contacts.map(contact => (
         <ListGroup.Item key={contact.id}>
           {contact.name}
-          {contact.id in status?"    Offline":"      Online"}
+          {status.includes(contact.id)?"    Online":"      Offline"}
         </ListGroup.Item>
       ))}
     </ListGroup>
