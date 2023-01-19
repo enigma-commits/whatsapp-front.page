@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import { useConversations } from '../contexts/ConversationsProvider';
+import back from '../images/back.png';
 
 export default function OpenConversation() {
   const [text, setText] = useState('')
@@ -22,7 +23,7 @@ export default function OpenConversation() {
   }
 
   return (
-    <div className="d-flex flex-column flex-grow-1">
+    <div className="d-flex flex-column flex-grow-1" style={{backgroundImage:`url(${back})`}}>
       <div className="flex-grow-1 overflow-auto">
         <div className="d-flex flex-column align-items-start justify-content-end px-3">
           {selectedConversation.messages.map((message, index) => {

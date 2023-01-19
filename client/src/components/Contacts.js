@@ -4,11 +4,10 @@ import { useContacts } from '../contexts/ContactsProvider';
 
 export default function Contacts() {
   const { contacts,list } = useContacts()
-  console.log(list);
   return (
     <ListGroup variant="flush">
       {contacts.map(contact => (
-        <ListGroup.Item key={contact.id}>
+        <ListGroup.Item key={contact.id} style={{backgroundColor:"#E3F6FF"}}>
           {contact.name}
           {list.includes(contact.id)?"    Online":"      Offline"}
         </ListGroup.Item>
